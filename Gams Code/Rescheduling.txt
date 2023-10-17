@@ -1,0 +1,11 @@
+par=PTS                rng=parameters!A1:AX22        rdim=1    cdim=1
+par=PTO                rng=parameters!A24:AX37       rdim=1    cdim=1
+par=PTL                rng=parameters!A39:AX44       rdim=1    cdim=1
+par=STS                rng=parameters!A46:AY67       rdim=1    cdim=1
+par=STO                rng=parameters!A69:AY82       rdim=1    cdim=1
+par=H                  rng=parameters!BA2:BB50       rdim=1    cdim=0
+par=RDS                rng=parameters!BD2:BE22       rdim=1    cdim=0
+par=RDO                rng=parameters!BD25:BE37      rdim=1    cdim=0
+par=RAS                rng=parameters!BG2:BH22       rdim=1    cdim=0
+par=RAO                rng=parameters!BG25:BH37      rdim=1    cdim=0
+

@@ -1,0 +1,161 @@
+$title Reschedule problem
+$onsymxref
+$onsymlist
+$onUNDF
+option optcr=0.01;
+option Reslim=1000000;
+option limrow=1000;
+
+$onecho > Rescheduling.txt
+set=s                rng=sets!A2:A51        rdim=1    cdim=0
+set=b                rng=sets!B2:B50        rdim=1    cdim=0
+set=i                rng=sets!C2:C22        rdim=1    cdim=0
+set=j                rng=sets!D2:D14        rdim=1    cdim=0
+set=l                rng=sets!E2:E6         rdim=1    cdim=0
+set=L1               rng=sets!E8:E10        rdim=1    cdim=0
+set=L2               rng=sets!E12:E13       rdim=1    cdim=0
+set=orgs             rng=sets!F1:BD22       rdim=1    cdim=1
+set=BI               rng=sets!F24:BC45      rdim=1    cdim=1
+set=orgo             rng=sets!F47:BD60      rdim=1    cdim=1
+set=BJ               rng=sets!F62:BC75      rdim=1    cdim=1
+set=DESI             rng=sets!F77:BD98      rdim=1    cdim=1
+set=DESJ             rng=sets!F100:BD113    rdim=1    cdim=1
+set=orgl             rng=sets!F115:BC120    rdim=1    cdim=1
+set=BL1              rng=sets!F122:BC125    rdim=1    cdim=1
+set=BL2              rng=sets!F127:BC129    rdim=1    cdim=1
+set=BL               rng=sets!F131:BD136    rdim=1    cdim=1
+
+
+$offecho
+$call gdxxrw.exe Data.xlsx @Rescheduling.txt
+$gdxin Data.gdx
+$offOrder
+sets
+S                        " set of ststion"
+B                        " set of blocks"
+I                        " Set of trains that are same direction by disturb train"
+J                        " Set of trains that are opposite same direction by disturb train"
+L                        " set of locomotive"
+L1(L)                    " sub Set of locomotive that are same direction by disturb train"
+L2(L)                    " sub Set of locomotive that are opposite same direction by disturb train"
+BI(i,b)                  " set of blocks that train i'th should be run"
+BJ(j,b)                  " set of blocks that train j'th should be run"
+BL(l,s)                  " set of station that are passed by locomotives"
+BL1(l,b)                 " set of blocks that locomotive L1'th should be run"
+BL2(l,b)                 " set of blocks that locomotive L2'th should be run"
+ORGS(i,s)                " Origin station train i'th to departure"
+ORGO(J,s)                " Origin station train j'th to departure"
+ORGL(L,s)                " Origin station locomotive l'th to departure"
+DESI(i,s)                " Destination of train i'th "
+DESJ(j,s)                " Destination of train j'th "
+Alias(i,k)
+
+$Load S, B, I, J, L, L1, L2, BI, BJ, BL, BL1, BL2, ORGS, ORGO, ORGL, DESI, DESJ
+$gdxin
+
+$onecho > Rescheduling.txt
+par=PTS                rng=parameters!A1:AX22        rdim=1    cdim=1
+par=PTO                rng=parameters!A24:AX37       rdim=1    cdim=1
+par=PTL                rng=parameters!A39:AX44       rdim=1    cdim=1
+par=STS                rng=parameters!A46:AY67       rdim=1    cdim=1
+par=STO                rng=parameters!A69:AY82       rdim=1    cdim=1
+par=H                  rng=parameters!BA2:BB50       rdim=1    cdim=0
+par=RDS                rng=parameters!BD2:BE22       rdim=1    cdim=0
+par=RDO                rng=parameters!BD25:BE37      rdim=1    cdim=0
+par=RAS                rng=parameters!BG2:BH22       rdim=1    cdim=0
+par=RAO                rng=parameters!BG25:BH37      rdim=1    cdim=0
+
+$offecho
+$call gdxxrw.exe Data.xlsx @Rescheduling.txt
+$gdxin Data.gdx
+$offOrder
+parameters
+PTS(i,b)      " Pass time of same direct train i'th in block b'th"
+PTO(j,b)      " pass time of opposite same direct train j'th in block b'th"
+STS(i,s)      "Scheduled stop time of train i'th in station s'th"
+STo(j,s)      "Scheduled stop time of train j'th in station s'th"
+PTl(l,b)      " pass time of locomotive l'th in block b'th"
+RDS(i)        " Real departure time for train i'th in first station in new schedul"
+RDO(j)        " Real departure time for train j'th in first station in new schedul"
+H(b)          " headway between two consecutive trains in block b'th"
+RAS(i)        " Real Arrival time for train i'th in last station in new schedul"
+RAO(j)        " Real Arrival time for train J'th in last station in new schedul"
+$load pts, pto, sts, sto, ptl, rds, rdo, h, ras, rao
+$gdxin
+Scalars
+BOD           " Begin of disturbances "    /12/
+Ts            " coopling time for same direct locomotive in joining time to disturbed train"  /48/
+To            " coopling time for oppposite same direct locomotive in joining time to disturbed train" /42/
+M             " A big number"        /10000/;
+
+variables  f, as(i,s), ao(j,s), ds(i,s), Do(j,s), al(l,s), dl(l,s),z(l), landa(i,k,s), gama(i,j),x(i,l,b), y(j,l,b), sigma(i);
+positive variable as, ao, ds, do,al, dl;
+binary variable landa, gama,x,y,sigma,z ;
+
+equations
+Delay
+eq01(i,s)
+eq02(i,s,b)
+eq03(i,s)
+eq04(j,s)
+eq05(j,s,b)
+eq06(j,s)
+eq07(i,k,s,b)
+eq08(i,k,s,b)
+eq09(i,j,s)
+eq10(i,j,s)
+eq11
+eq12(l,s)
+eq13(l,s,b)
+eq14(l,s)
+eq15(l,i,s,b)
+eq16(l,i,s,b)
+eq17(l,s,b)
+eq18(l,j,b,s)
+eq19(l,j,b,s)
+eq20(i,l,s)
+eq21(i,l,s)
+eq22(i,s)
+eq23(i,s);
+
+
+
+delay..                                                                           f=e=sum((i,s)$DESI(i,s),as(i,s)-ras(i))+sum((j,s)$DESJ(j,s),ao(j,s)-rao(j)) ;
+eq01(i,s)$(orgs(i,s) and ord(i)<>5)..                                             ds(i,s)=g=rds(i);
+eq02(i,s,b)$(bi(i,b)and ord(s)=ord(b))..                                          as(i,s+1)=g=ds(i,s)+pts(i,b);
+eq03(i,s)$(ord(s)<card(s))..                                                      ds(i,s)=g=as(i,s)+sts(i,s);
+eq04(j,s)$orgo(j,s)..                                                             do(j,s)=g=rdo(j);
+eq05(j,s,b)$(ord(s)=ord(b) and bj(j,b))..                                         ao(j,s)=g=do(j,s+1)+pto(j,b);
+eq06(j,s)$(ord(s)<card(s))..                                                      do(j,s)=g=ao(j,s)+sto(j,s);
+eq07(i,k,s,b)$(ord(i)<>ord(k)and ord(s)=ord(b))..                                 ds(k,s)=g=as(i,s+1)+H(b)-M*(1-landa(i,k,s));
+eq08(i,k,s,b)$(ord(i)<>ord(k)and ord(s)=ord(b))..                                 ds(i,s)=g=as(k,s+1)-M*landa(i,k,s)+H(b);
+eq09(i,j,s)$(ord(s)=20 and ord(i)<>5)..                                           do(j,s+1)=g=as(i,s+1)-M*(2-gama(i,j)-sigma(i));
+eq10(i,j,s)$(ord(s)=20 and ord(i)<>5)..                                           ds(i,s)=g=ao(j,s)-M*(1+gama(i,j)-sigma(i));
+eq11..                                                                            sum(l,z(l))=e=1;
+eq12(l,s)$(orgl(l,s))..                                                           dl(l,s)=g= bod -M*(1-z(l));
+eq13 (l,s,b)$(bl1(l,b) and ord(s)=ord(b))..                                       al(l,s+1)=g=dl(l,s)+ptl(l,b);
+eq14(l,s)$(bl(l,s))..                                                             dl(l,s)=g=al(l,s)-M*(1-Z(l));
+eq15(l,i,s,b)$(ord(i)<>5 and ord(s)=ord(b) and bl1(l,b)and bi(i,b))..             dl(l,s)=g=as(i,s+1)-M*(2-x(i,l,b)-z(l))+H(b);
+eq16(l,i,s,b)$(ord(i)<>5 and ord(s)=ord(b) and bl1(l,b)and bi(i,b))..             ds(i,s)=g=al(l,s+1)-M*(1-z(l)+x(i,l,b))+H(b);
+eq17(l,s,b)$(ord(s)=ord(b)and ord(S)< card(s) and bl2(l,b))..                     al(l,s)=g=dl(l,s+1)+ptl(l,b);
+eq18(l,j,b,s)$(ord(s)=ord(b) and bl2(l,b)and bj(j,b))..                           dl(l,s+1)=g=ao(j,s)-M*(2-y(j,l,b)-z(l))+H(b);
+eq19(l,j,b,s)$(ord(s)=ord(b) and bl2(l,b)and bj(j,b))..                           do(j,s+1)=g=al(l,s)-M*(1+y(j,l,b)-z(l))+H(b);
+eq20(i,l,s)$(ord(i)=5 and ord(s)=20 and l1(l))..                                  as(i,s+1)=g=dl(l,s)+TS-M*(1-z(l));
+eq21(i,l,s)$(ord(i)=5 and ord(s)=20 and l2(l))..                                  as(i,s+1)=g=dl(l,s+1)+TO-M*(1-z(l));
+eq22(i,s)$(ord(i)<>5 and ord(s)=20)..                                             ds(i,s)=l=as('340',s+1)+M*(1-sigma(i));
+eq23(i,s)$(ord(i)<>5 and ord(s)=20)..                                             ds(i,s)=g=as('340',s+1)-M*sigma(i);
+
+
+model rescheduling /all/;
+solve rescheduling using mip minimizing f;
+display f.l, as.l,ao.l, al.l, dl.l, z.l, x.l, y.l, gama.l;
+
+
+
+execute_unload "Data.gdx"
+execute 'gdxxrw.exe Data.gdx var=as.l rng=Variabels!a1  var=ds.l rng=Variabels!a25   var=AO.l rng=Variabels!A49  var=DO.l rng=Variabels!A65  var=AL.l rng=Variabels!A79   var=Dl.l rng=Variabels!A86'
+
+
+
+
+

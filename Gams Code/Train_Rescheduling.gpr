@@ -1,0 +1,28 @@
+[PROJECT]
+
+[RP:UNTITLED_2]
+1=
+
+[SOLVERS]
+LP=CPLEX
+MIP=CPLEX
+MIQCP=CPLEX
+QCP=CPLEX
+RMIP=CPLEX
+RMIQCP=CPLEX
+
+[RP:TRAIN_RESCHEDULING]
+1=
+
+[MRUFILES]
+1=C:\Users\RAYAN POOYESH\Documents\gamsdir\Rescheduling\Untitled_2.gms
+
+[OPENWINDOW_1]
+FILE0=C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Train_Rescheduling.gms
+FILE1=C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Train_Rescheduling.lst
+FILE2=C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Train_Rescheduling.lst
+MAXIM=0
+TOP=0
+LEFT=0
+HEIGHT=416
+WIDTH=1154

@@ -1,0 +1,226 @@
+
+--- Job Train_Rescheduling.gms Start 04/04/19 21:51:22 24.1.2 r40979 WEX-WEI x86_64/MS Windows
+GAMS 24.1.2   Copyright (C) 1987-2013 GAMS Development. All rights reserved
+Licensee: Gary Goldstein                                 G010614:2121CA-WIN
+          Decision Ware, Inc.                                        DC2807
+--- Starting compilation
+--- Train_Rescheduling.gms(30) 2 Mb
+--- call gdxxrw.exe Data.xlsx @Rescheduling.txt
+
+GDXXRW           24.1.2 r40979 Released Jun 16, 2013 VS8 x86/MS Windows       
+Input file : C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.xlsx
+Output file: C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.gdx
+Total time = 2203 Ms
+--- Train_Rescheduling.gms(31) 2 Mb
+--- GDXin=C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.gdx
+--- Train_Rescheduling.gms(69) 3 Mb
+--- call gdxxrw.exe Data.xlsx @Rescheduling.txt
+
+GDXXRW           24.1.2 r40979 Released Jun 16, 2013 VS8 x86/MS Windows       
+Input file : C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.xlsx
+Output file: C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.gdx
+Total time = 2000 Ms
+--- Train_Rescheduling.gms(70) 3 Mb
+--- GDXin=C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.gdx
+--- Train_Rescheduling.gms(161) 3 Mb
+--- Starting execution: elapsed 0:00:04.446
+--- Train_Rescheduling.gms(7) 4 Mb
+--- Generating MIP model rescheduling
+--- Train_Rescheduling.gms(150) 20 Mb
+---   45,617 rows  24,889 columns  135,703 non-zeroes
+---   21,405 discrete-columns
+--- Executing CPLEX: elapsed 0:00:04.908
+
+IBM ILOG CPLEX   24.1.2 r40979 Released Jun 16, 2013 WEI x86_64/MS Windows    
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.5.1.0
+
+Reading data...
+Starting Cplex...
+Tried aggregator 2 times.
+MIP Presolve eliminated 32090 rows and 17318 columns.
+MIP Presolve modified 29183 coefficients.
+Aggregator did 729 substitutions.
+Reduced MIP has 12798 rows, 6842 columns, and 38866 nonzeros.
+Reduced MIP has 6097 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.09 sec. (48.75 ticks)
+Probing fixed 0 vars, tightened 5 bounds.
+Probing time = 0.03 sec. (5.83 ticks)
+Cover probing fixed 0 vars, tightened 966 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 280 rows and 290 columns.
+Reduced MIP has 12518 rows, 6552 columns, and 38106 nonzeros.
+Reduced MIP has 5807 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (11.92 ticks)
+Probing time = 0.02 sec. (7.60 ticks)
+Cover probing fixed 0 vars, tightened 40 bounds.
+Clique table members: 4770.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+Aggregator did 2 substitutions.
+Reduced LP has 12516 rows, 6550 columns, and 38100 nonzeros.
+Presolve time = 0.02 sec. (7.08 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            48.000000
+Perturbation started.
+Iteration:   101   Dual objective     =            48.000000
+Iteration:   696   Dual objective     =            48.000020
+Iteration:  1295   Dual objective     =            48.000032
+Iteration:  1898   Dual objective     =            48.000039
+Iteration:  2505   Dual objective     =            48.000041
+Removing perturbation.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     0   Dual objective     =            48.000000
+
+Iteration log . . .
+Iteration:     0   Dual objective     =            48.000000
+Root relaxation solution time = 0.19 sec. (323.00 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0       48.0000    71                     48.0000     2618         
+*     0+    0                          920.0000       48.0000     2618   94.78%
+Found incumbent of value 920.000000 after 0.55 sec. (482.02 ticks)
+      0     0       48.1860    71      920.0000     Cuts: 131     2874   94.76%
+      0     0       76.6612    58      920.0000     Cuts: 172     2975   91.67%
+*     0+    0                          649.0000       76.6612     2975   88.19%
+Found incumbent of value 649.000000 after 0.80 sec. (654.80 ticks)
+*     0+    0                          337.0000       76.6612     2975   77.25%
+Found incumbent of value 337.000000 after 0.95 sec. (756.29 ticks)
+*     0+    0                          323.0000       76.6612     2975   76.27%
+Found incumbent of value 323.000000 after 1.00 sec. (785.72 ticks)
+
+Repeating presolve.
+Tried aggregator 5 times.
+MIP Presolve eliminated 7921 rows and 3950 columns.
+MIP Presolve modified 9430 coefficients.
+Aggregator did 9 substitutions.
+Reduced MIP has 4588 rows, 2593 columns, and 14174 nonzeros.
+Reduced MIP has 1892 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (41.48 ticks)
+Probing fixed 0 vars, tightened 68 bounds.
+Probing time = 0.08 sec. (32.81 ticks)
+Cover probing fixed 0 vars, tightened 236 bounds.
+Tried aggregator 1 time.
+MIP Presolve eliminated 20 rows and 10 columns.
+MIP Presolve modified 1547 coefficients.
+Reduced MIP has 4568 rows, 2583 columns, and 14114 nonzeros.
+Reduced MIP has 1882 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (10.51 ticks)
+Represolve time = 0.20 sec. (93.75 ticks)
+Probing fixed 0 vars, tightened 43 bounds.
+Probing time = 0.06 sec. (31.57 ticks)
+Cover probing fixed 0 vars, tightened 789 bounds.
+Clique table members: 9689.
+Tightened 19 constraints.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+LP Presolve eliminated 216 rows and 116 columns.
+Aggregator did 5 substitutions.
+Reduced LP has 4447 rows, 2462 columns, and 13668 nonzeros.
+Presolve time = 0.02 sec. (2.66 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            95.000000
+Iteration:   281   Dual objective     =           102.000000
+Perturbation started.
+Iteration:   303   Dual objective     =           102.000000
+Iteration:   559   Dual objective     =           102.000034
+Iteration:   706   Dual objective     =           102.000042
+Removing perturbation.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     0   Dual objective     =           102.175278
+
+Iteration log . . .
+Iteration:     0   Dual objective     =           102.175278
+Root relaxation solution time = 0.06 sec. (47.88 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          323.0000       76.6612     3790   76.27%
+Found incumbent of value 323.000000 after 1.38 sec. (979.72 ticks)
+      0     0      102.1753    64      323.0000      102.1753     3790   68.37%
+      0     2      102.1753    64      323.0000      102.2814     3790   68.33%
+Elapsed time = 1.55 sec. (1103.57 ticks, tree = 0.00 MB, solutions = 4)
+*    60+   55                          315.0000      116.9167     4891   62.88%
+Found incumbent of value 315.000000 after 1.74 sec. (1282.75 ticks)
+*    80+   73                          291.0000      116.9167     5054   59.82%
+Found incumbent of value 291.000000 after 1.78 sec. (1319.64 ticks)
+     82    77      240.7500    42      291.0000      116.9167     5117   59.82%
+*    90+   77                          244.0000      116.9167     5266   52.08%
+Found incumbent of value 244.000000 after 1.81 sec. (1360.95 ticks)
+*   100+   76                          239.0000      141.0000     5393   41.00%
+Found incumbent of value 239.000000 after 1.86 sec. (1402.62 ticks)
+*   108    73      integral     0      216.0000      141.0000     5421   34.72%
+Found incumbent of value 216.000000 after 1.88 sec. (1418.62 ticks)
+*   118    68      integral     0      210.0000      142.4062     5562   32.19%
+                                                  Impl Bds: 7                  
+Found incumbent of value 210.000000 after 1.92 sec. (1459.42 ticks)
+*   120+   25                          172.0000      145.0000     5608   15.70%
+Found incumbent of value 172.000000 after 1.92 sec. (1470.18 ticks)
+*   134     7      integral     0      169.0000      166.0000     5722    1.78%
+Found incumbent of value 169.000000 after 1.97 sec. (1485.36 ticks)
+
+Implied bound cuts applied:  50
+Flow cuts applied:  10
+Mixed integer rounding cuts applied:  46
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    1.55 sec. (1105.91 ticks)
+Sequential b&c:
+  Real time             =    0.44 sec. (383.63 ticks)
+                          ------------
+Total (root+branch&cut) =    1.99 sec. (1489.54 ticks)
+MIP status(102): integer optimal, tolerance
+Cplex Time: 1.99sec (det. 1489.54 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+DUAL formed by presolve
+LP Presolve eliminated 37713 rows and 23415 columns.
+Aggregator did 744 substitutions.
+Reduced LP has 730 rows, 7204 columns, and 14364 nonzeros.
+Presolve time = 0.03 sec. (21.58 ticks)
+
+Iteration log . . .
+Iteration:     1    Objective     =        -21764.000000
+Iteration:   226    Objective     =        -13476.000000
+Iteration:   445    Objective     =        -10069.000000
+Iteration:   665    Objective     =         -7732.000000
+Iteration:   858    Objective     =           162.000000
+Fixed MIP status(1): optimal
+Cplex Time: 0.11sec (det. 46.23 ticks)
+
+Solution satisfies tolerances.
+
+MIP Solution:          169.000000    (5722 iterations, 137 nodes)
+Final Solve:           169.000000    (864 iterations)
+
+Best possible:         168.000000
+Absolute gap:            1.000000
+Relative gap:            0.005917
+
+--- Restarting execution
+--- Train_Rescheduling.gms(150) 5 Mb
+--- Reading solution for model rescheduling
+--- Train_Rescheduling.gms(150) 9 Mb
+--- Executing after solve: elapsed 0:00:07.576
+--- Train_Rescheduling.gms(156) 10 Mb
+
+GDXXRW           24.1.2 r40979 Released Jun 16, 2013 VS8 x86/MS Windows       
+Input file : C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.gdx
+Output file: C:\Users\RAYAN POOYESH\Documents\gamsdir\train rescheduling\Data.xlsx
+Total time = 2641 Ms
+*** Status: Normal completion
+--- Job Train_Rescheduling.gms Stop 04/04/19 21:51:32 elapsed 0:00:10.357
